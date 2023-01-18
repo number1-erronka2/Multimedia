@@ -13,7 +13,8 @@ public class JohnMovement : MonoBehaviour
     public float Speed;
     public AudioClip sonidoFin;
 
-    
+    public GameObject panel;
+
     private bool tocandoSuelo;
     
     private Rigidbody2D Rigidbody2D;
@@ -102,6 +103,7 @@ public class JohnMovement : MonoBehaviour
         Camera.main.GetComponent<AudioSource>().PlayOneShot(sonidoFin);
         Destroy(gameObject);
         Time.timeScale = 0;
+        panel.SetActive(true);
         }
     }
 }
