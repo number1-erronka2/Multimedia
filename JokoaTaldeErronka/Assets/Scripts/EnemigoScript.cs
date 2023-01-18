@@ -51,6 +51,6 @@ public class EnemigoScript : MonoBehaviour
     {
         vida = vida - 1;
         if (vida == 0) Destroy(gameObject);
-
+        
     }
 }
