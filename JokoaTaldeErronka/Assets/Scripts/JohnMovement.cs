@@ -60,6 +60,12 @@ public class JohnMovement : MonoBehaviour
             Shoot();
             ultimoDisparo = Time.time;
         }
+        if(transform.position.y < -4.5)
+        {
+            // para parar el juego
+            Time.timeScale = 0;
+            // para reiniciar la escena timescale = 1;
+        }
     }
     
     private void FixedUpdate()
@@ -91,6 +97,7 @@ public class JohnMovement : MonoBehaviour
         if(vida  == 0) { 
         Camera.main.GetComponent<AudioSource>().PlayOneShot(sonidoFin);
         Destroy(gameObject);
+        Time.timeScale = 0;
         }
     }
 }
