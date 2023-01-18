@@ -30,6 +30,7 @@ public class JohnMovement : MonoBehaviour
         // meter el componente Ridigbody2D a jhon movement
         Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -68,6 +69,7 @@ public class JohnMovement : MonoBehaviour
         {
             // para parar el juego
             Time.timeScale = 0;
+            panel.SetActive(true);
             // para reiniciar la escena timescale = 1;
         }
     }
