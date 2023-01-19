@@ -12,11 +12,19 @@ public class DBDemo : MonoBehaviour
 {
     private string dbIzena = "URI=file:Db/jolasaDB.db"; //jolasaren Db karpetan
 
+    //public static DBDemo instance;
+
+    public DBDemo(String name, float puntuazioa)
+    {
+        AddNewPartida(name, puntuazioa); //Partida berria(erabiltzailea, puntuazioa)
+    }
+    
     void Start()
     {
-        DisplayLangileak();
+        //instance = this;
+        //DisplayLangileak();
         //AddNewPartida("RaulProba", 1000); //Partida berria(erabiltzailea, puntuazioa)
-        DisplayPartidak();
+        //DisplayPartidak();
     }
 
     public void DisplayPartidak(){
