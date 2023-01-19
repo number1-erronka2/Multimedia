@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using TMPro;
 
 public class ScoreScript : MonoBehaviour
 {
     public TextMeshProUGUI puntuacion;
     private int ScoreNumber;
-
+    public static ScoreScript instance;
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
         ScoreNumber = 0;
         puntuacion.text = "Score: " + ScoreNumber;
     }
@@ -22,8 +21,13 @@ public class ScoreScript : MonoBehaviour
         if(collision.tag == "moneda")
         {
             ScoreNumber += 7;
-            Destroy(collision.gameObject);
             puntuacion.text = "Score: " + ScoreNumber;
+            Destroy(collision.gameObject);
         }
+    }
+    public void suma()
+    {
+        ScoreNumber += 20; 
+        puntuacion.text = "Score: " + ScoreNumber;
     }
 }

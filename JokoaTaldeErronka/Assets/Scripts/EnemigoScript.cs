@@ -50,7 +50,9 @@ public class EnemigoScript : MonoBehaviour
     public void Tocado()
     {
         vida = vida - 1;
-        if (vida == 0) Destroy(gameObject);
-
+        if (vida == 0) {
+            ScoreScript.instance.suma();
+            Destroy(gameObject);       
+        }
     }
 }

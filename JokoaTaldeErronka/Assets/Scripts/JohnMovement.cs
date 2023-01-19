@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.UI;
 
 public class JohnMovement : MonoBehaviour
 {
@@ -12,12 +13,15 @@ public class JohnMovement : MonoBehaviour
     public float Speed;
     public AudioClip sonidoFin;
 
+    public GameObject panel;
+
     private bool tocandoSuelo;
     
     private Rigidbody2D Rigidbody2D;
     private Animator animator;
 
-    private int vida = 10;  
+    private int vida = 10;
+    public Image[] corazones;
 
     private float ultimoDisparo;
     private float Horizontal; 
@@ -26,6 +30,7 @@ public class JohnMovement : MonoBehaviour
         // meter el componente Ridigbody2D a jhon movement
         Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -64,6 +69,7 @@ public class JohnMovement : MonoBehaviour
         {
             // para parar el juego
             Time.timeScale = 0;
+            panel.SetActive(true);
             // para reiniciar la escena timescale = 1;
         }
     }
@@ -94,10 +100,12 @@ public class JohnMovement : MonoBehaviour
     public void Tocado()
     {
         vida = vida - 1;
+        corazones[vida].color = Color.cyan;
         if(vida  == 0) { 
         Camera.main.GetComponent<AudioSource>().PlayOneShot(sonidoFin);
         Destroy(gameObject);
         Time.timeScale = 0;
+        panel.SetActive(true);
         }
     }
 }
