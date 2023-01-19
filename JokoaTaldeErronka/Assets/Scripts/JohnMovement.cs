@@ -16,6 +16,7 @@ public class JohnMovement : MonoBehaviour
     public GameObject panel;
 
     private bool tocandoSuelo;
+    public DBDemo dbDemo;
     
     private Rigidbody2D Rigidbody2D;
     private Animator animator;
@@ -82,7 +83,7 @@ public class JohnMovement : MonoBehaviour
     
     private void Jump()
     {
-        //añadimos una fuerza hacia arriba
+        //aï¿½adimos una fuerza hacia arriba
         Rigidbody2D.AddForce(Vector2.up * JumpForce);
     }
 
@@ -102,10 +103,12 @@ public class JohnMovement : MonoBehaviour
         vida = vida - 1;
         corazones[vida].color = Color.cyan;
         if(vida  == 0) { 
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(sonidoFin);
-        Destroy(gameObject);
-        Time.timeScale = 0;
-        panel.SetActive(true);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(sonidoFin);
+            Destroy(gameObject);
+            Time.timeScale = 0;
+            panel.SetActive(true);
+            dbDemo = new DBDemo("MarkelUNI", 100.0f);
+            
         }
     }
 }
