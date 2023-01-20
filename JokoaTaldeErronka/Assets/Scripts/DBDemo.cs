@@ -4,16 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mono.Data.Sqlite;
+using TMPro;
 
 
-
+//SELECT EXISTS(SELECT erabiltzailea from Langilea WHERE erabiltzailea = 'sa');
 
 public class DBDemo : MonoBehaviour
 {
     private string dbIzena = "URI=file:Db/jolasaDB.db"; //jolasaren Db karpetan
 
-    //public static DBDemo instance;
+    public static DBDemo instance;
 
+    public DBDemo(){}
     public DBDemo(String name, float puntuazioa)
     {
         AddNewPartida(name, puntuazioa); //Partida berria(erabiltzailea, puntuazioa)
@@ -21,7 +23,7 @@ public class DBDemo : MonoBehaviour
     
     void Start()
     {
-        //instance = this;
+        instance = this;
         //DisplayLangileak();
         //AddNewPartida("RaulProba", 1000); //Partida berria(erabiltzailea, puntuazioa)
         //DisplayPartidak();
@@ -89,4 +91,27 @@ public class DBDemo : MonoBehaviour
         }
     }
 
+    public bool VerifyUser(String user){
+        bool result = false;
+        using (var connection = new SqliteConnection(dbIzena))
+        {
+            connection.Open();
+
+            using (var command = connection.CreateCommand()){
+                command.CommandText = "SELECT EXISTS(SELECT erabiltzailea from Langilea WHERE erabiltzailea = @param1) as 'result';";
+                command.Parameters.Add(new SqliteParameter("@param1", user));
+
+                using(IDataReader reader = command.ExecuteReader()){
+                    int i = Convert.ToInt32(reader.GetValue(0));
+                    if(i == 1){
+                        result = true;
+                    }
+                    Debug.Log(i);
+                    reader.Close();
+                }
+            }   
+            connection.Close();
+        }
+        return result;
+    }
 }
