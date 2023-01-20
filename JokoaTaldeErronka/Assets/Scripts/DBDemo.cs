@@ -7,8 +7,6 @@ using Mono.Data.Sqlite;
 using TMPro;
 
 
-//SELECT EXISTS(SELECT erabiltzailea from Langilea WHERE erabiltzailea = 'sa');
-
 public class DBDemo : MonoBehaviour
 {
     private string dbIzena = "URI=file:Db/jolasaDB.db"; //jolasaren Db karpetan
@@ -25,8 +23,6 @@ public class DBDemo : MonoBehaviour
     {
         instance = this;
         //DisplayLangileak();
-        //AddNewPartida("RaulProba", 1000); //Partida berria(erabiltzailea, puntuazioa)
-        //DisplayPartidak();
     }
 
     public void DisplayPartidak(){
@@ -106,7 +102,6 @@ public class DBDemo : MonoBehaviour
                     if(i == 1){
                         result = true;
                     }
-                    Debug.Log(i);
                     reader.Close();
                 }
             }   

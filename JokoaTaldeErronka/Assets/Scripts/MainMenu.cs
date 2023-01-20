@@ -7,31 +7,31 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private string userName;
+    string userName;
+
+    public MainMenu(){}
+
+    public void startGame(){
+        SceneManager.LoadScene("Game");
+        Debug.Log("Game is exiting");
+    }
 
     public void exitGame(){
         Application.Quit();
         Debug.Log("Game is exiting");
     }
-
-    public void getUserName(string inputUserName){
+    
+    public void setUserName(string inputUserName){
         userName = inputUserName;
-        Debug.Log(inputUserName);
+        PlayerPrefs.SetString("userName", userName);
     }
 
     public void home(){
         DBDemo dbDemo = new DBDemo();
-        Debug.Log(userName);
         if(dbDemo.VerifyUser(userName)){
             SceneManager.LoadScene("MainMenu");
         } else {
             //visualizar mensaje de error
         }
-    }
-
-
-    public void startGame(){
-        SceneManager.LoadScene("Game");
-        Debug.Log("Game is exiting");
     }
 }

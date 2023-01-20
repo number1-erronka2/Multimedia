@@ -23,11 +23,16 @@ public class ScoreScript : MonoBehaviour
             ScoreNumber += 7;
             puntuacion.text = "Score: " + ScoreNumber;
             Destroy(collision.gameObject);
+            PlayerPrefs.SetInt("Puntuazioa", ScoreNumber);
         }
     }
     public void suma()
     {
         ScoreNumber += 20; 
         puntuacion.text = "Score: " + ScoreNumber;
+        PlayerPrefs.SetInt("Puntuazioa", ScoreNumber);
     }
+
+
+    
 }

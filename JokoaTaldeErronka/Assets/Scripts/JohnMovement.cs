@@ -7,25 +7,22 @@ using UnityEngine.UI;
 
 public class JohnMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject BulletPrefab;
-    public float JumpForce;
-    public float Speed;
-    public AudioClip sonidoFin;
-
     public GameObject panel;
-
-    private bool tocandoSuelo;
-    public DBDemo dbDemo;
-    
     private Rigidbody2D Rigidbody2D;
     private Animator animator;
-
-    private int vida = 10;
     public Image[] corazones;
-
+    public AudioClip sonidoFin;
+    
+    public float JumpForce;
+    public float Speed;
     private float ultimoDisparo;
-    private float Horizontal; 
+    private float Horizontal;
+    private bool tocandoSuelo;
+    private int vida = 10;
+
+    public DBDemo dbDemo;
+    
     void Start()
     {
         // meter el componente Ridigbody2D a jhon movement
@@ -98,6 +95,7 @@ public class JohnMovement : MonoBehaviour
         GameObject bullet = Instantiate(BulletPrefab, transform.position + direction *0.1f, Quaternion.identity);
         bullet.GetComponent<BulletScript>().SetDirection(direction);
     }
+
     public void Tocado()
     {
         vida = vida - 1;
@@ -107,8 +105,8 @@ public class JohnMovement : MonoBehaviour
             Destroy(gameObject);
             Time.timeScale = 0;
             panel.SetActive(true);
-            dbDemo = new DBDemo("MarkelUNI", 100.0f);
-            
+
+            dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
         }
     }
 }
