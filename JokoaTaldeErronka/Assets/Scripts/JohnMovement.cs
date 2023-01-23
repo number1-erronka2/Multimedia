@@ -9,11 +9,13 @@ public class JohnMovement : MonoBehaviour
 {
     public GameObject BulletPrefab;
     public GameObject panel;
+    public GameObject panel2;
     private Rigidbody2D Rigidbody2D;
     private Animator animator;
     public Image[] corazones;
     public AudioClip sonidoFin;
     
+
     public float JumpForce;
     public float Speed;
     private float ultimoDisparo;
@@ -69,6 +71,12 @@ public class JohnMovement : MonoBehaviour
             Time.timeScale = 0;
             panel.SetActive(true);
             // para reiniciar la escena timescale = 1;
+        }
+        if (ScoreScript.ScoreNumber == 210)
+        {
+            Time.timeScale = 0;
+            panel2.SetActive(true);
+            dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
         }
     }
     

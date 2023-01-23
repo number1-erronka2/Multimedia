@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScoreScript : MonoBehaviour
 {
     public TextMeshProUGUI puntuacion;
-    private int ScoreNumber;
+    public static int ScoreNumber;
     public static ScoreScript instance;
     // Start is called before the first frame update
     void Start()
