@@ -35,6 +35,11 @@ public class EnemigoScript : MonoBehaviour
             ultimoDisparo = Time.time;
             Shoot();
         }
+        if (transform.position.y < -4.5)
+        {
+            ScoreScript.instance.suma();
+            Destroy(gameObject);
+        }
     }
     private void Shoot()
     {
