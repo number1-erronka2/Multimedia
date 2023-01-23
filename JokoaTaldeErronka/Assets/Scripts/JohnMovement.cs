@@ -14,6 +14,7 @@ public class JohnMovement : MonoBehaviour
     private Animator animator;
     public Image[] corazones;
     public AudioClip sonidoFin;
+    public AudioClip Dolor;
 
     public float JumpForce;
     public float Speed;
@@ -107,7 +108,8 @@ public class JohnMovement : MonoBehaviour
     {
         vida = vida - 1;
         corazones[vida].color = Color.cyan;
-        if(vida  == 0) { 
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(Dolor);
+        if (vida  == 0) { 
             
             Destroy(gameObject);
             Time.timeScale = 0;
