@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void exitGame(){
+    //para que salga tambien si estas en unityGame
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

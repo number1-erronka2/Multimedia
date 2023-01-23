@@ -14,7 +14,6 @@ public class JohnMovement : MonoBehaviour
     private Animator animator;
     public Image[] corazones;
     public AudioClip sonidoFin;
-    
 
     public float JumpForce;
     public float Speed;
@@ -109,12 +108,16 @@ public class JohnMovement : MonoBehaviour
         vida = vida - 1;
         corazones[vida].color = Color.cyan;
         if(vida  == 0) { 
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(sonidoFin);
+            
             Destroy(gameObject);
             Time.timeScale = 0;
             panel.SetActive(true);
 
             dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(sonidoFin);
+
+
+            Camera.main.GetComponent<AudioSource>().Stop();
         }
     }
 }
