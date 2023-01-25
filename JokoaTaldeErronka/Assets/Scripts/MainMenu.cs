@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
 {
     string userName;
     public TextMeshProUGUI text;
+    public TMP_InputField  usuarioa;
     public MainMenu(){}
 
     public void startGame(){
@@ -42,6 +43,7 @@ public class MainMenu : MonoBehaviour
             //visualizar mensaje de error
             text.color = Color.red;
             text.SetText("Incorrect User, Please Try Again.");
+            usuarioa.SetTextWithoutNotify("");
             
         }
     }
