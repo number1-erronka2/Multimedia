@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using EasyUI.Dialogs;
 using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviour
