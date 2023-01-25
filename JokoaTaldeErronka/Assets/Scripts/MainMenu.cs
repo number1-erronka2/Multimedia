@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using EasyUI.Dialogs;
+using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviour
 {
@@ -38,6 +40,7 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         } else {
             //visualizar mensaje de error
+            Debug.Log("Incorrect User");
         }
     }
 }
