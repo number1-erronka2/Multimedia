@@ -10,7 +10,7 @@ using Unity.VisualScripting;
 public class MainMenu : MonoBehaviour
 {
     string userName;
-
+    public TextMeshProUGUI text;
     public MainMenu(){}
 
     public void startGame(){
@@ -38,9 +38,12 @@ public class MainMenu : MonoBehaviour
         DBDemo dbDemo = new DBDemo();
         if(dbDemo.VerifyUser(userName)){
             SceneManager.LoadScene("MainMenu");
+            text.SetText("");
         } else {
             //visualizar mensaje de error
-            Debug.Log("Incorrect User");
+            text.color = Color.red;
+            text.SetText("Incorrect User, Please Try Again.");
+            
         }
     }
 }
