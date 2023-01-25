@@ -100,7 +100,7 @@ public class JohnMovement : MonoBehaviour
         else direction = Vector3.left;
         
         // coge la bala y la duplica en la posicion que queramos sin rotacion(para sacar la bala desde donde queramos)
-        GameObject bullet = Instantiate(BulletPrefab, transform.position + direction *0.1f, Quaternion.identity);
+        GameObject bullet = Instantiate(BulletPrefab, transform.position + direction *0.08f, Quaternion.identity);
         bullet.GetComponent<BulletScript>().SetDirection(direction);
     }
 

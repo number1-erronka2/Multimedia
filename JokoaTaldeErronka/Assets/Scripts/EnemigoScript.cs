@@ -6,6 +6,7 @@ public class EnemigoScript : MonoBehaviour
 {
     public GameObject John;
     public GameObject BulletPrefab;
+    public AudioClip Monkey;
 
     private int vida = 3;
     private float ultimoDisparo;
@@ -56,6 +57,7 @@ public class EnemigoScript : MonoBehaviour
     {
         vida = vida - 1;
         if (vida == 0) {
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(Monkey);
             ScoreScript.instance.suma();
             Destroy(gameObject);       
         }
