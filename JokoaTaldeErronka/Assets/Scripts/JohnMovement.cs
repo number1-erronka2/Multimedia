@@ -75,7 +75,7 @@ public class JohnMovement : MonoBehaviour
                 Camera.main.GetComponent<AudioSource>().Stop();
             // para reiniciar la escena timescale = 1;
         }
-        if (ScoreScript.ScoreNumber == 400)
+        if (ScoreScript.ScoreNumber == 474)
         {
         Time.timeScale = 0;
         panel2.SetActive(true);
