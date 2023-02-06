@@ -14,7 +14,8 @@ public class PlayerCamara : MonoBehaviour
         //movemos la camara dependiendo de donde este el personaje gracias a la referencia de GameObject
         Vector3 position = transform.position;
         position.x = John.transform.position.x;
-        transform.position = position;
+        position.y = John.transform.position.y;
+            transform.position = position;
         }
     }
 }

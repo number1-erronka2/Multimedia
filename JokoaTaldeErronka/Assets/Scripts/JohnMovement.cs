@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class JohnMovement : MonoBehaviour
 {
     public GameObject muralla;
+    public GameObject murallaUltNvl;
     public GameObject BulletPrefab;
     public GameObject panel;
     public GameObject panel2;
@@ -74,7 +75,7 @@ public class JohnMovement : MonoBehaviour
                 Camera.main.GetComponent<AudioSource>().Stop();
             // para reiniciar la escena timescale = 1;
         }
-        if (ScoreScript.ScoreNumber == 379)
+        if (ScoreScript.ScoreNumber == 400)
         {
         Time.timeScale = 0;
         panel2.SetActive(true);
@@ -84,6 +85,11 @@ public class JohnMovement : MonoBehaviour
         {
             //destruir la muralla para pasar al nivel 2
             DestroyImmediate(muralla,true);
+        }
+        if (ScoreScript.ScoreNumber >= 379)
+        {
+            //destruir la muralla para pasar al nivel 2
+            DestroyImmediate(murallaUltNvl, true);
         }
     }
     
