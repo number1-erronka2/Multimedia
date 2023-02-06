@@ -14,6 +14,7 @@ public class ScoreScript : MonoBehaviour
         instance = this;
         ScoreNumber = 0;
         puntuacion.text = "Score: " + ScoreNumber;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,6 +34,6 @@ public class ScoreScript : MonoBehaviour
         PlayerPrefs.SetInt("Puntuazioa", ScoreNumber);
     }
 
-
+    
     
 }

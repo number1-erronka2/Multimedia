@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class JohnMovement : MonoBehaviour
 {
+    public GameObject muralla;
     public GameObject BulletPrefab;
     public GameObject panel;
     public GameObject panel2;
@@ -70,13 +71,19 @@ public class JohnMovement : MonoBehaviour
             // para parar el juego
             Time.timeScale = 0;
             panel.SetActive(true);
+                Camera.main.GetComponent<AudioSource>().Stop();
             // para reiniciar la escena timescale = 1;
         }
-        if (ScoreScript.ScoreNumber == 210)
+        if (ScoreScript.ScoreNumber == 379)
         {
-            Time.timeScale = 0;
-            panel2.SetActive(true);
-            dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
+        Time.timeScale = 0;
+        panel2.SetActive(true);
+        dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
+        }
+        if (ScoreScript.ScoreNumber >= 210)
+        {
+            //destruir la muralla para pasar al nivel 2
+            DestroyImmediate(muralla,true);
         }
     }
     
