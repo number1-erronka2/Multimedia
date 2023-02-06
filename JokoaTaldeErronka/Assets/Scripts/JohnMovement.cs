@@ -70,9 +70,12 @@ public class JohnMovement : MonoBehaviour
         if(transform.position.y < -4.5)
         {
             // para parar el juego
+            Destroy(gameObject);
+            dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
             Time.timeScale = 0;
             panel.SetActive(true);
-                Camera.main.GetComponent<AudioSource>().Stop();
+            Camera.main.GetComponent<AudioSource>().Stop();
+            ScoreScript.ScoreNumber = 0;
             // para reiniciar la escena timescale = 1;
         }
         if (ScoreScript.ScoreNumber == 474)
@@ -90,6 +93,10 @@ public class JohnMovement : MonoBehaviour
         {
             //destruir la muralla para pasar al nivel 2
             DestroyImmediate(murallaUltNvl, true);
+        }
+        if(gameObject == null)
+        {
+           
         }
     }
     
@@ -127,7 +134,6 @@ public class JohnMovement : MonoBehaviour
             Destroy(gameObject);
             Time.timeScale = 0;
             panel.SetActive(true);
-
             dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
             Camera.main.GetComponent<AudioSource>().PlayOneShot(sonidoFin);
 

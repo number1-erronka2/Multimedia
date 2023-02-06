@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScoreScript : MonoBehaviour
 {
     public TextMeshProUGUI puntuacion;
-    public static int ScoreNumber;
+    public static int ScoreNumber = 0;
     public static ScoreScript instance;
     // Start is called before the first frame update
     void Start()
@@ -14,6 +14,7 @@ public class ScoreScript : MonoBehaviour
         instance = this;
         ScoreNumber = 0;
         puntuacion.text = "Score: " + ScoreNumber;
+        PlayerPrefs.SetInt("Puntuazioa", 0);
 
     }
 
