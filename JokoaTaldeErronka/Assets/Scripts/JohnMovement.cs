@@ -18,6 +18,8 @@ public class JohnMovement : MonoBehaviour
     public AudioClip sonidoFin;
     public AudioClip Dolor;
 
+    public Joystick joystick;
+    
     public float JumpForce;
     public float Speed;
     private float ultimoDisparo;
@@ -42,11 +44,11 @@ public class JohnMovement : MonoBehaviour
         Horizontal = Input.GetAxisRaw("Horizontal");
 
         //si clicka a le metemos el valor -1 para poner inversa la imagen
-        if (Horizontal < 0.0f) transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-        else if(Horizontal > 0.0f) transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        if (joystick.Horizontal < 0.0f) transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+        else if(joystick.Horizontal > 0.0f) transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         // si el jugador esta clickando a o d metemos la animacion
-        animator.SetBool("running", Horizontal != 0.0f);
+        animator.SetBool("running", joystick.Horizontal != 0.0f);
 
         Debug.DrawRay(transform.position, Vector3.down*0.1f,Color.red);
         // hacemos que si esta tocando el suelo pueda saltar
@@ -63,7 +65,7 @@ public class JohnMovement : MonoBehaviour
             Jump();
         }
         if (Input.GetKey(KeyCode.Space) && Time.time > ultimoDisparo + 0.25f)
-        { 
+        {
             Shoot();
             ultimoDisparo = Time.time;
         }
@@ -103,25 +105,28 @@ public class JohnMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //Vector2(2 elementos del mundo, X e Y)
-        Rigidbody2D.velocity = new Vector2(Horizontal*Speed, Rigidbody2D.velocity.y);
+        Rigidbody2D.velocity = new Vector2(joystick.Horizontal * Speed, Rigidbody2D.velocity.y);
     }
     
-    private void Jump()
+    public void Jump()
     {
+        if (tocandoSuelo) { 
         //a�adimos una fuerza hacia arriba
         Rigidbody2D.AddForce(Vector2.up * JumpForce);
+        }
     }
 
-    private void Shoot()
+    public void Shoot()
     {
-        Vector3 direction;
-        //saber hacia que lado tiramos la bala
-        if (transform.localScale.x == 1.0f)direction = Vector3.right;
-        else direction = Vector3.left;
-        
-        // coge la bala y la duplica en la posicion que queramos sin rotacion(para sacar la bala desde donde queramos)
-        GameObject bullet = Instantiate(BulletPrefab, transform.position + direction *0.08f, Quaternion.identity);
-        bullet.GetComponent<BulletScript>().SetDirection(direction);
+            Vector3 direction;
+            //saber hacia que lado tiramos la bala
+            if (transform.localScale.x == 1.0f) direction = Vector3.right;
+            else direction = Vector3.left;
+
+            // coge la bala y la duplica en la posicion que queramos sin rotacion(para sacar la bala desde donde queramos)
+            GameObject bullet = Instantiate(BulletPrefab, transform.position + direction * 0.08f, Quaternion.identity);
+            bullet.GetComponent<BulletScript>().SetDirection(direction);
+
     }
 
     public void Tocado()
