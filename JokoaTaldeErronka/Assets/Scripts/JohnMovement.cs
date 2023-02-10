@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using System.Threading;
 
 public class JohnMovement : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class JohnMovement : MonoBehaviour
     public AudioClip Dolor;
 
     public Joystick joystick;
-    
+
     public float JumpForce;
     public float Speed;
     private float ultimoDisparo;
@@ -118,6 +119,7 @@ public class JohnMovement : MonoBehaviour
 
     public void Shoot()
     {
+        if(Time.time > ultimoDisparo + 0.25f) {
             Vector3 direction;
             //saber hacia que lado tiramos la bala
             if (transform.localScale.x == 1.0f) direction = Vector3.right;
@@ -126,7 +128,8 @@ public class JohnMovement : MonoBehaviour
             // coge la bala y la duplica en la posicion que queramos sin rotacion(para sacar la bala desde donde queramos)
             GameObject bullet = Instantiate(BulletPrefab, transform.position + direction * 0.08f, Quaternion.identity);
             bullet.GetComponent<BulletScript>().SetDirection(direction);
-
+            ultimoDisparo = Time.time;
+        }
     }
 
     public void Tocado()
