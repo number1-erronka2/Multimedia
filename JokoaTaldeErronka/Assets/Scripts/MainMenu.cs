@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour
         } else {
             //visualizar mensaje de error
             text.color = Color.red;
-            text.SetText("Incorrect User, Please Try Again.");
+            text.SetText("Izen okerra. Saiatu berriz");
             usuarioa.SetTextWithoutNotify("");
             
         }

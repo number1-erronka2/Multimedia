@@ -13,7 +13,7 @@ public class ScoreScript : MonoBehaviour
     {
         instance = this;
         ScoreNumber = 0;
-        puntuacion.text = "Score: " + ScoreNumber;
+        puntuacion.text = "Puntuak: " + ScoreNumber;
         PlayerPrefs.SetInt("Puntuazioa", 0);
 
     }
@@ -23,7 +23,7 @@ public class ScoreScript : MonoBehaviour
         if(collision.tag == "moneda")
         {
             ScoreNumber += 7;
-            puntuacion.text = "Score: " + ScoreNumber;
+            puntuacion.text = "Puntuak: " + ScoreNumber;
             Destroy(collision.gameObject);
             PlayerPrefs.SetInt("Puntuazioa", ScoreNumber);
         }
@@ -31,7 +31,7 @@ public class ScoreScript : MonoBehaviour
     public void suma()
     {
         ScoreNumber += 20; 
-        puntuacion.text = "Score: " + ScoreNumber;
+        puntuacion.text = "Puntuak: " + ScoreNumber;
         PlayerPrefs.SetInt("Puntuazioa", ScoreNumber);
     }
 

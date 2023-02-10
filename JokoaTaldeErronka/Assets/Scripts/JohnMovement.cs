@@ -5,9 +5,11 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using System.Threading;
+using TMPro;
 
 public class JohnMovement : MonoBehaviour
 {
+
     public GameObject muralla;
     public GameObject murallaUltNvl;
     public GameObject BulletPrefab;
@@ -142,6 +144,7 @@ public class JohnMovement : MonoBehaviour
             Destroy(gameObject);
             Time.timeScale = 0;
             panel.SetActive(true);
+
             dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
             Camera.main.GetComponent<AudioSource>().PlayOneShot(sonidoFin);
 
