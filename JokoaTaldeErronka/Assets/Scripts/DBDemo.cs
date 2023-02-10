@@ -22,26 +22,31 @@ public class DBDemo : MonoBehaviour
     void Start()
     {
         instance = this;
-        //DisplayLangileak();
     }
 
-    public void DisplayPartidak(){
-        using (var connection = new SqliteConnection(dbIzena))
-        {
-            connection.Open();
+    public List<HighScore> GetPartidak(){
+        List<HighScore> highScores = new List<HighScore>();
+        try{
+            using (var connection = new SqliteConnection(dbIzena))
+            {
+                connection.Open();
 
-            using (var command = connection.CreateCommand()){
-                command.CommandText = "SELECT * FROM Partida;";
+                using (var command = connection.CreateCommand()){
+                    command.CommandText = "SELECT * FROM Partida ORDER BY puntuazioa DESC;";
 
-                using(IDataReader reader = command.ExecuteReader()){
-                    while(reader.Read()){
-                        Debug.Log("Partida: " + reader["id"] + "," + reader["langilea"] + "," + reader["puntuazioa"] + "," + reader["data"] );  //consolan bistaratuko da
+                    using(IDataReader reader = command.ExecuteReader()){
+                        while(reader.Read()){
+                            highScores.Add(new HighScore(Convert.ToInt32(reader["id"]), reader["langilea"].ToString(), Convert.ToInt32(reader["puntuazioa"]), Convert.ToInt32(reader["data"])));
+                        }
+                        reader.Close();
                     }
-                    reader.Close();
-                }
-            }   
-            connection.Close();
+                }   
+                connection.Close();
+            }
+        }catch(Exception e){
+            Debug.Log(e);
         }
+        return highScores;
         
     }
 
