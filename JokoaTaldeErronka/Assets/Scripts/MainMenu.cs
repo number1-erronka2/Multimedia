@@ -20,11 +20,11 @@ public class MainMenu : MonoBehaviour
 
     public void exitGame(){
     //para que salga tambien si estas en unityGame
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-    Application.Quit();
-#endif
+    #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit();
+    #endif
         Application.Quit();
         Debug.Log("Game is exiting");
     }
@@ -36,6 +36,12 @@ public class MainMenu : MonoBehaviour
 
     public void home(){
         DBDemo dbDemo = new DBDemo();
+        Debug.Log("DBDemo sortzen");
+        dbDemo.sortuDB();
+        Debug.Log("DBDemo sortuta");
+
+
+
         if(dbDemo.VerifyUser(userName)){
             SceneManager.LoadScene("MainMenu");
             text.SetText("");
