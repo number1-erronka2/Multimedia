@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,7 +60,7 @@ public class JohnMovement : MonoBehaviour
         animator.SetBool("running", Horizontal != 0.0f);
 
 
-        Debug.DrawRay(transform.position, Vector3.down*0.1f,Color.red);
+        //Debug.DrawRay(transform.position, Vector3.down*0.1f,Color.red);
         // hacemos que si esta tocando el suelo pueda saltar
         if (Physics2D.Raycast(transform.position,Vector3.down,0.1f ))
         {
@@ -91,9 +92,10 @@ public class JohnMovement : MonoBehaviour
         }
         if (ScoreScript.ScoreNumber == 474)
         {
-        Time.timeScale = 0;
-        panel2.SetActive(true);
-        dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
+            Time.timeScale = 0;
+            panel2.SetActive(true);
+            dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
+            dbKonektatu();
         }
         if (ScoreScript.ScoreNumber >= 210)
         {
@@ -107,7 +109,6 @@ public class JohnMovement : MonoBehaviour
         }
         if(gameObject == null)
         {
-           
         }
     }
     
@@ -122,7 +123,7 @@ public class JohnMovement : MonoBehaviour
     public void Jump()
     {
         if (tocandoSuelo) { 
-        //a�adimos una fuerza hacia arriba
+        //añadimos una fuerza hacia arriba
         Rigidbody2D.AddForce(Vector2.up * JumpForce);
         }
     }
@@ -156,8 +157,24 @@ public class JohnMovement : MonoBehaviour
             dbDemo = new DBDemo(PlayerPrefs.GetString("userName"), PlayerPrefs.GetInt("Puntuazioa"));
             Camera.main.GetComponent<AudioSource>().PlayOneShot(sonidoFin);
 
-
+            dbKonektatu();
+            
             Camera.main.GetComponent<AudioSource>().Stop();
         }
+    }
+
+    /**
+    * Socket-a exekutatuko du
+    */
+    public void dbKonektatu()
+    {
+        ProcessStartInfo startInfo = new ProcessStartInfo();
+        startInfo.FileName = "java";
+        startInfo.Arguments = "-jar Db/socketerabiltzaile.jar";
+        startInfo.UseShellExecute = false;
+
+        Process process = new Process();
+        process.StartInfo = startInfo;
+        process.Start();
     }
 }
